@@ -10,18 +10,32 @@ class Past extends StatelessWidget {
     final year = Provider.of<WeatherProvider>(context).year;
     final day = Provider.of<WeatherProvider>(context).day;
     final current = Provider.of<WeatherProvider>(context).current;
-    final dateTimeD = DateTime.fromMillisecondsSinceEpoch(year[0].date * 1000);
-    final dateTimeY = DateTime.fromMillisecondsSinceEpoch(year[0].date * 1000);
-    final sunriseDT =
-        DateTime.fromMillisecondsSinceEpoch(current[0].sunrise * 1000);
-    final sunsetDT =
-        DateTime.fromMillisecondsSinceEpoch(current[0].sunset * 1000);
+    // final dateTimeD = DateTime.fromMillisecondsSinceEpoch(year[0].date * 1000);
+    // final dateTimeY = DateTime.fromMillisecondsSinceEpoch(year[0].date * 1000);
+    // final sunriseDT =
+    //     DateTime.fromMillisecondsSinceEpoch(current[0].sunrise * 1000);
+    // final sunsetDT =
+    //     DateTime.fromMillisecondsSinceEpoch(current[0].sunset * 1000);
     final dayCode = day[0].icon;
     final yearCode = year[0].icon;
-    final dayImage =
-        IconText().getImages(dayCode, dateTimeD, sunriseDT, sunsetDT);
-    final yearImage =
-        IconText().getImages(yearCode, dateTimeY, sunriseDT, sunsetDT);
+    // final dayImage =
+    //     IconText().getImages(dayCode, dateTimeD, sunriseDT, sunsetDT);
+    // final yearImage =
+    //     IconText().getImages(yearCode, dateTimeY, sunriseDT, sunsetDT);
+
+    final dayImage = IconText().getImages(
+      dayCode,
+      current[0].updated,
+      current[0].sunrise,
+      current[0].sunset,
+    );
+
+    final yearImage = IconText().getImages(
+      yearCode,
+      current[0].updated,
+      current[0].sunrise,
+      current[0].sunset,
+    );
 
     final degSign = '\u00B0';
     return WidgetConfig.contTrans(

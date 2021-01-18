@@ -10,6 +10,7 @@ class Time extends StatelessWidget {
     final current = Provider.of<WeatherProvider>(context).current;
     final dateTime =
         DateTime.fromMillisecondsSinceEpoch(current[0].updated * 1000);
+    var formattedTime = DateFormat.jm().format(DateTime.now());
     final formattedDate = DateFormat.yMMMd().format(dateTime);
     return WidgetConfig.contTrans(
       width: 137.5,
@@ -24,6 +25,14 @@ class Time extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            alignment: Alignment.center,
+            child: Text(
+              '$formattedTime',
+              style: Theme.of(context).textTheme.headline3,
+            ),
+          ),
           Container(
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             alignment: Alignment.center,

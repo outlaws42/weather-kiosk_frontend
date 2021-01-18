@@ -12,19 +12,16 @@ class Current extends StatelessWidget {
     final current = Provider.of<WeatherProvider>(context).current;
     final dateTime =
         DateTime.fromMillisecondsSinceEpoch(current[0].updated * 1000);
-    final sunriseDT =
-        DateTime.fromMillisecondsSinceEpoch(current[0].sunrise * 1000);
-    final sunsetDT =
-        DateTime.fromMillisecondsSinceEpoch(current[0].sunset * 1000);
     final formattedTime = DateFormat('hh:mm a').format(dateTime);
     final degSign = '\u00B0';
     final refresh = '\u21BB';
     final iconCode = current[0].icon;
+
     final imageName = IconText().getImages(
       iconCode,
-      dateTime,
-      sunriseDT,
-      sunsetDT,
+      current[0].updated,
+      current[0].sunrise,
+      current[0].sunset,
     );
 
     return WidgetConfig.contTrans(

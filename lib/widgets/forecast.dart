@@ -19,14 +19,8 @@ class Forecast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final forecast = Provider.of<WeatherProvider>(context).forecast;
     final current = Provider.of<WeatherProvider>(context).current;
-    final dateTime =
-        DateTime.fromMillisecondsSinceEpoch(forecast[0].date * 1000);
-    final sunriseDT =
-        DateTime.fromMillisecondsSinceEpoch(current[0].sunrise * 1000);
-    final sunsetDT =
-        DateTime.fromMillisecondsSinceEpoch(current[0].sunset * 1000);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -61,9 +55,9 @@ class Forecast extends StatelessWidget {
               ),
               Image.asset("assets/images/65/${IconText().getImages(
                 icon,
-                dateTime,
-                sunriseDT,
-                sunsetDT,
+                current[0].updated,
+                current[0].sunrise,
+                current[0].sunset,
               )}"),
               Text(
                 temp,

@@ -42,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     // SystemChrome.setEnabledSystemUIOverlays([]);
     timer = Timer.periodic(
-        Duration(seconds: 60), (Timer t) => checkForNewSharedLists());
+        Duration(seconds: 30), (Timer t) => checkForNewSharedLists());
     _isLoading = true;
     Provider.of<WeatherProvider>(context, listen: false).fetchForecast();
     Provider.of<WeatherProvider>(context, listen: false).fetchPast('year');
@@ -65,14 +65,12 @@ class _MainScreenState extends State<MainScreen> {
 
     if (_isLoading == false) {
       final currentCode = current[0].icon;
-      final dateTime =
-          DateTime.fromMillisecondsSinceEpoch(current[0].updated * 1000);
-      final sunriseDT =
-          DateTime.fromMillisecondsSinceEpoch(current[0].sunrise * 1000);
-      final sunsetDT =
-          DateTime.fromMillisecondsSinceEpoch(current[0].sunset * 1000);
-      imageName =
-          IconText().getBackground(currentCode, dateTime, sunriseDT, sunsetDT);
+      imageName = IconText().getBackground(
+        currentCode,
+        current[0].updated,
+        current[0].sunrise,
+        current[0].sunset,
+      );
     }
     SystemChrome.setEnabledSystemUIOverlays([]);
     SystemChrome.setPreferredOrientations([

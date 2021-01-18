@@ -40,8 +40,8 @@ class ThemeConfig {
       ),
       headline3: TextStyle(
         fontFamily: 'Ubuntu',
-        color: Colors.teal,
-        fontSize: 35.0,
+        color: Color.fromRGBO(255, 255, 255, .85), // white
+        fontSize: 30.0,
         fontWeight: FontWeight.bold,
       ),
       headline4: TextStyle(

@@ -1,42 +1,54 @@
 class IconText {
   String getImages(
     int code,
-    DateTime dateTime,
-    DateTime sunrise,
-    DateTime sunset,
+    int dateTime,
+    int sunriseTS,
+    int sunsetTS,
   ) {
-    var hour = dateTime.hour;
-    var sunriseHour = sunrise.hour;
-    var sunsetHour = sunset.hour;
+    var updateTime = dateTime;
+    var sunrise = sunriseTS;
+    var sunset = sunsetTS;
 
-    var image = 'unknown.png';
-    print(hour);
-    if (code == 800 && hour >= sunriseHour && hour < sunsetHour) {
-      image = 'clear-day.png';
-    } else if (code == 800 && hour >= sunsetHour) {
-      image = 'clear-night.png';
-    } else if (code == 800 && hour >= 0 && hour < sunriseHour) {
-      image = 'clear-night.png';
-    } else if (code >= 801 && code < 805) {
-      image = 'cloudy.png';
+    if (code == 800 && updateTime >= sunrise && updateTime < sunset) {
+      return 'clear-day.png';
+    } else if (code == 800 && updateTime >= sunset ||
+        code == 800 && updateTime >= 0 && updateTime < sunrise) {
+      return 'clear-night.png';
+    } else if (code >= 801 &&
+        code <= 802 &&
+        updateTime >= sunrise &&
+        updateTime < sunset) {
+      return 'partly-cloudy-day.png';
+    } else if (code >= 801 && code <= 802 && updateTime >= sunset ||
+        code >= 801 && code <= 802 && updateTime >= 0 && updateTime < sunrise) {
+      return 'partly-cloudy-night.png';
+    } else if (code >= 803 && code <= 804) {
+      return 'cloudy.png';
     } else if (code > 700 && code < 800) {
-      image = 'fog.png';
+      return 'fog.png';
     } else if (code >= 600 && code < 650) {
-      image = 'snow.png';
+      return 'snow.png';
     } else if (code >= 300 && code < 550) {
-      image = 'rain.png';
+      return 'rain.png';
     } else if (code >= 200 && code < 250) {
-      image = 'thunderstorm.png';
+      return 'thunderstorm.png';
+    } else if (code == 100) {
+      return 'wind.png';
     }
-    return image;
+    return 'na.png';
   }
 
-  String getBackground(int code, DateTime dateTime, sunrise, sunset) {
-    var hour = dateTime.hour;
-    var sunriseHour = sunrise.hour;
-    var sunsetHour = sunset.hour;
+  String getBackground(
+    int code,
+    int time,
+    int sunriseTS,
+    int sunsetTS,
+  ) {
+    var sunrise = sunriseTS;
+    var sunset = sunsetTS;
+    var updateTime = time;
 
-    if (hour >= sunsetHour || hour >= 0 && hour < sunriseHour) {
+    if (updateTime >= sunset || updateTime >= 0 && updateTime < sunrise) {
       return 'night.jpg';
     } else if (code == 800) {
       return 'sunny.jpg';
