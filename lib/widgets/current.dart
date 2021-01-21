@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/weather_provider.dart';
@@ -25,11 +26,11 @@ class Current extends StatelessWidget {
     );
 
     return WidgetConfig.contTrans(
-      height: 215.0,
-      width: 285.0,
+      height: ScreenUtil().setHeight(215.0), //215.0,
+      width: ScreenUtil().setWidth(285.0), //285.0,
       marLeft: 0,
       marTop: 10,
-      borderRad: 50.0,
+      borderRad: 20.0,
       gradColor1: '#404241',
       gradColor2: '#232625',
       opacity: '0xB3',

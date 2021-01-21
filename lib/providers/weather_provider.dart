@@ -16,37 +16,22 @@ class WeatherProvider extends ChangeNotifier {
   List<IndoorModel> _indoor = [];
 
   List<CurrentModel> get current {
-    // if (_showFavoritesOnly) {
-    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
-    // }
     return [..._current];
   }
 
   List<ForecastModel> get forecast {
-    // if (_showFavoritesOnly) {
-    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
-    // }
     return [..._forecast];
   }
 
   List<PastModel> get year {
-    // if (_showFavoritesOnly) {
-    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
-    // }
     return [..._year];
   }
 
   List<PastModel> get day {
-    // if (_showFavoritesOnly) {
-    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
-    // }
     return [..._day];
   }
 
   List<IndoorModel> get indoor {
-    // if (_showFavoritesOnly) {
-    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
-    // }
     return [..._indoor];
   }
 
@@ -139,12 +124,21 @@ class WeatherProvider extends ChangeNotifier {
     print(response.body);
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
     extractedData.forEach((key, value) {
-      loadIndoor.add(
-        IndoorModel(
-          front: value['front_room'],
-          date: value['dt'],
-        ),
-      );
+      if (value['front_room'] > 0) {
+        loadIndoor.add(
+          IndoorModel(
+            front: value['front_room'],
+            date: value['dt'],
+          ),
+        );
+      } else {
+        loadIndoor.add(
+          IndoorModel(
+            front: 0,
+            date: value['dt'],
+          ),
+        );
+      }
     });
 
     _indoor = loadIndoor;

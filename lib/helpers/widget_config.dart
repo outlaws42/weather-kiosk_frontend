@@ -127,6 +127,54 @@ class WidgetConfig {
     );
   }
 
+  static Widget contTransNoGrad({
+    height,
+    width,
+    double marLeft = 0.0,
+    double marTop = 0.0,
+    double marRight = 0.0,
+    double marBottom = 0.0,
+    double bordRadLT = 0.0,
+    double bordRadLB = 0.0,
+    double bordRadRB = 0.0,
+    double bordRadRT = 0.0,
+    double borderRad = 0.0,
+    String color = '#BF4407',
+    String opacity = '0xff',
+    BuildContext context,
+    Widget child,
+  }) {
+    String colorOne = color.replaceAll('#', opacity);
+    var borderEqual = false;
+    if (bordRadLT == 0.0 &&
+        bordRadLB == 0.0 &&
+        bordRadRT == 0.0 &&
+        bordRadRB == 0.0) {
+      borderEqual = true;
+    }
+
+    print('borderEqual: $borderEqual');
+
+    return Container(
+      width: width,
+      height: height,
+      margin: EdgeInsets.fromLTRB(marLeft, marTop, marRight, marBottom),
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: Color(int.parse(colorOne)),
+        borderRadius: borderEqual
+            ? BorderRadius.circular(borderRad)
+            : BorderRadius.only(
+                bottomLeft: Radius.circular(bordRadLB),
+                topLeft: Radius.circular(bordRadLT),
+                bottomRight: Radius.circular(bordRadRB),
+                topRight: Radius.circular(bordRadRT),
+              ),
+      ),
+      child: child,
+    );
+  }
+
   static Widget contGrad({
     height,
     width,

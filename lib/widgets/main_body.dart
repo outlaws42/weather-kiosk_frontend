@@ -1,7 +1,5 @@
-// import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../helpers/screen.dart';
 import './current.dart';
 import '../providers/theme_provider.dart';
 import '../providers/weather_provider.dart';
@@ -20,10 +18,6 @@ class _MainBodyState extends State<MainBody> {
   Widget build(BuildContext context) {
     final themeData = Provider.of<ThemeProvider>(context, listen: false);
     final forecast = Provider.of<WeatherProvider>(context).forecast;
-    final width = Screen.width(context);
-    final height = Screen.height(context);
-    print(width);
-    print(height);
     bool _isDarkMode = themeData.isDarkMode;
     print(_isDarkMode);
     return Column(

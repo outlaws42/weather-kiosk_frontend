@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../providers/weather_provider.dart';
 import '../helpers/icon_text.dart';
@@ -10,18 +11,8 @@ class Past extends StatelessWidget {
     final year = Provider.of<WeatherProvider>(context).year;
     final day = Provider.of<WeatherProvider>(context).day;
     final current = Provider.of<WeatherProvider>(context).current;
-    // final dateTimeD = DateTime.fromMillisecondsSinceEpoch(year[0].date * 1000);
-    // final dateTimeY = DateTime.fromMillisecondsSinceEpoch(year[0].date * 1000);
-    // final sunriseDT =
-    //     DateTime.fromMillisecondsSinceEpoch(current[0].sunrise * 1000);
-    // final sunsetDT =
-    //     DateTime.fromMillisecondsSinceEpoch(current[0].sunset * 1000);
     final dayCode = day[0].icon;
     final yearCode = year[0].icon;
-    // final dayImage =
-    //     IconText().getImages(dayCode, dateTimeD, sunriseDT, sunsetDT);
-    // final yearImage =
-    //     IconText().getImages(yearCode, dateTimeY, sunriseDT, sunsetDT);
 
     final dayImage = IconText().getImages(
       dayCode,
@@ -39,12 +30,13 @@ class Past extends StatelessWidget {
 
     final degSign = '\u00B0';
     return WidgetConfig.contTrans(
-      width: 137.5,
-      height: 115.0,
+      width: ScreenUtil().setWidth(137.5), //137.5,
+      height: ScreenUtil().setHeight(150.0), //115.0,
       gradColor1: '#232625',
       gradColor2: '#404241',
       opacity: '0xB3',
       marLeft: 20,
+      marTop: 10,
       bordRadLB: 20.0,
       bordRadLT: 20.0,
       context: context,
@@ -61,6 +53,9 @@ class Past extends StatelessWidget {
               ),
               Image.asset("assets/images/30/$dayImage")
             ],
+          ),
+          SizedBox(
+            height: 10,
           ),
           Text('Last Year', style: Theme.of(context).textTheme.headline5),
           Row(

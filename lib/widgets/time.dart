@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/weather_provider.dart';
@@ -13,12 +14,13 @@ class Time extends StatelessWidget {
     var formattedTime = DateFormat.jm().format(DateTime.now());
     final formattedDate = DateFormat.yMMMd().format(dateTime);
     return WidgetConfig.contTrans(
-      width: 137.5,
-      height: 115.0,
+      width: ScreenUtil().setWidth(137.5), //137.5,
+      height: ScreenUtil().setHeight(150.0), //115.0,
       gradColor1: '#232625',
       gradColor2: '#404241',
       opacity: '0xB3',
       marRight: 20,
+      marTop: 10,
       bordRadRB: 20.0,
       bordRadRT: 20.0,
       context: context,
