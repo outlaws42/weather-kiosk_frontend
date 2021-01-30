@@ -19,11 +19,9 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   var _isLoading = false;
-  int starter = 0;
   Timer timer;
 
-  void checkForNewSharedLists() {
-    print('Updated every 60');
+  void checkForAPIUpdates() {
     _isLoading = true;
     Provider.of<WeatherProvider>(context, listen: false).fetchForecast();
     Provider.of<WeatherProvider>(context, listen: false).fetchPast('year');
@@ -42,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     // SystemChrome.setEnabledSystemUIOverlays([]);
     timer = Timer.periodic(
-        Duration(seconds: 30), (Timer t) => checkForNewSharedLists());
+        Duration(seconds: 30), (Timer t) => checkForAPIUpdates());
     _isLoading = true;
     Provider.of<WeatherProvider>(context, listen: false).fetchForecast();
     Provider.of<WeatherProvider>(context, listen: false).fetchPast('year');

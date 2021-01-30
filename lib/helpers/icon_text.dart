@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class IconText {
   String getImages(
     int code,
@@ -38,6 +40,19 @@ class IconText {
     return 'na.png';
   }
 
+  String getSeason(int month) {
+    if (month == 12 || month == 1 || month == 2) {
+      return 'Winter';
+    } else if (month >= 3 && month <= 5) {
+      return 'Spring';
+    } else if (month >= 6 && month <= 8) {
+      return 'Summer';
+    } else if (month >= 9 && month <= 11) {
+      return 'Fall';
+    }
+    return 'Season';
+  }
+
   String getBackground(
     int code,
     int time,
@@ -47,22 +62,25 @@ class IconText {
     var sunrise = sunriseTS;
     var sunset = sunsetTS;
     var updateTime = time;
+    var dateTime = DateTime.fromMillisecondsSinceEpoch(updateTime * 1000);
+    var season = getSeason(dateTime.month);
+    print('Season$season.jpg');
 
     if (updateTime >= sunset || updateTime >= 0 && updateTime < sunrise) {
       return 'night.jpg';
     } else if (code == 800) {
-      return 'sunny.jpg';
+      return 'sunny$season.jpg';
     } else if (code >= 801 && code < 805) {
-      return 'cloudy.jpg';
+      return 'cloudy$season.jpg';
     } else if (code > 700 && code < 800) {
-      return 'foggy.jpg';
+      return 'foggy$season.jpg';
     } else if (code >= 600 && code < 650) {
-      return 'snowy.jpg';
+      return 'snow.jpg';
     } else if (code >= 300 && code < 550) {
-      return 'rain.jpg';
+      return 'rain$season.jpg';
     } else if (code >= 200 && code < 250) {
       return 'thunderstorm.jpg';
     }
-    return 'cloudy.jpg';
+    return 'cloudy$season.jpg';
   }
 }

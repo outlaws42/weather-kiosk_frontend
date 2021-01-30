@@ -75,13 +75,24 @@ flutter:
     - assets/images/30/wind.png
     - assets/images/30/na.png
     # Background Images
-    - assets/images/background/cloudy.jpg
-    - assets/images/background/sunny.jpg
-    - assets/images/background/rain.jpg
-    - assets/images/background/clearNight.jpg
+    - assets/images/background/cloudyFall.jpg
+    - assets/images/background/cloudyWinter.jpg
+    - assets/images/background/cloudySpring.jpg
+    - assets/images/background/cloudySummer.jpg
+    - assets/images/background/sunnyFall.jpg
+    - assets/images/background/sunnyWinter.jpg
+    - assets/images/background/sunnySpring.jpg
+    - assets/images/background/sunnySummer.jpg
+    - assets/images/background/rainFall.jpg
+    - assets/images/background/rainWinter.jpg
+    - assets/images/background/rainSpring.jpg
+    - assets/images/background/rainSummer.jpg
     - assets/images/background/night.jpg
-    - assets/images/background/foggy.jpg
-    - assets/images/background/snowy.jpg
+    - assets/images/background/foggyFall.jpg
+    - assets/images/background/foggyWinter.jpg
+    - assets/images/background/foggySpring.jpg
+    - assets/images/background/foggySummer.jpg
+    - assets/images/background/snow.jpg
     - assets/images/background/thunderstorm.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
