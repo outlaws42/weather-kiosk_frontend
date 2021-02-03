@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import './settings.dart';
 import '../providers/weather_provider.dart';
 import '../helpers/widget_config.dart';
 import '../helpers/icon_text.dart';
@@ -39,9 +40,15 @@ class Current extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            child: Text(
-              '${current[0].windDir.toString()} at ${current[0].windSpeed.toString()}MPH',
-              style: Theme.of(context).textTheme.headline5,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("assets/images/30/wind.png"),
+                Text(
+                  '${current[0].windDir.toString()} at ${current[0].windSpeed.toString()}MPH',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ],
             ),
           ),
           Container(
@@ -62,8 +69,19 @@ class Current extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    margin: EdgeInsets.only(top: 5),
-                    child: Image.asset("assets/images/65/$imageName")),
+                  margin: EdgeInsets.only(top: 5),
+                  child: IconButton(
+                    padding: EdgeInsets.all(0.0),
+                    icon: Image.asset("assets/images/65/$imageName"),
+                    iconSize: 65,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Settings()),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),

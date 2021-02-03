@@ -45,8 +45,8 @@ class ThemeConfig {
         fontWeight: FontWeight.bold,
       ),
       headline4: TextStyle(
-        color: Colors.green,
-        fontSize: 35.0,
+        color: Colors.teal,
+        fontSize: 18.0,
         fontWeight: FontWeight.bold,
       ),
       headline5: TextStyle(
@@ -104,8 +104,8 @@ class ThemeConfig {
         fontWeight: FontWeight.bold,
       ),
       headline4: TextStyle(
-        color: Colors.green,
-        fontSize: 35.0,
+        color: Colors.teal,
+        fontSize: 18.0,
         fontWeight: FontWeight.bold,
       ),
       headline5: TextStyle(

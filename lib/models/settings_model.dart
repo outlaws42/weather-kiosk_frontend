@@ -1,0 +1,15 @@
+import 'package:flutter/foundation.dart';
+
+// This Model is the layout of each individual item in the state.
+
+class SettingsModel with ChangeNotifier {
+  final String id;
+  final String setting;
+  final int active;
+
+  SettingsModel({
+    this.id,
+    this.setting,
+    this.active,
+  });
+}
