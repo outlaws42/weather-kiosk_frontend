@@ -3,16 +3,14 @@ import 'package:weatherkiosk/helpers/db_helper.dart';
 import '../models/settings_model.dart';
 
 class SettingProvider extends ChangeNotifier {
-  final baseUrl = 'http://192.168.1.3';
-  final port = 5000;
   List<SettingsModel> _settings = [];
 
-  List<SettingsModel> get current {
+  List<SettingsModel> get settings {
     return [..._settings];
   }
 
   Future<void> fetchSettings() async {
-    final dataList = await DBHelper.getData('settings');
+    final dataList = await DBHelper.getData('app_settings');
     _settings = dataList
         .map(
           (setting) => SettingsModel(
@@ -23,5 +21,23 @@ class SettingProvider extends ChangeNotifier {
         )
         .toList();
     notifyListeners();
+  }
+
+  void addSettings(
+    int id,
+    String settings,
+  ) {
+    final newSetting = SettingsModel(
+      id: id,
+      setting: settings,
+      active: 1,
+    );
+    _settings.add(newSetting);
+    notifyListeners();
+    DBHelper.insert('app_settings', {
+      'id': newSetting.id,
+      'setting': newSetting.setting,
+      'active': newSetting.active,
+    });
   }
 }

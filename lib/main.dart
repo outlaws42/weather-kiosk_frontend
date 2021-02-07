@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import './providers/theme_provider.dart';
 import './providers/weather_provider.dart';
+import './providers/settings_provider.dart';
 import './helpers/theme_config.dart';
 import './screens/main_screen.dart';
 
@@ -15,6 +16,9 @@ void main() {
         ),
         ChangeNotifierProvider<WeatherProvider>(
           create: (ctx) => WeatherProvider(),
+        ),
+        ChangeNotifierProvider<SettingProvider>(
+          create: (ctx) => SettingProvider(),
         ),
       ],
       child: MyApp(),

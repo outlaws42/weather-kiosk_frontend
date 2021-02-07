@@ -10,7 +10,7 @@ class DBHelper {
     return sql.openDatabase(path.join(dbPath, 'settings.db'),
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE app_settings(id TEXT PRIMARY KEY, setting TEXT, active INTEGER)');
+          'CREATE TABLE app_settings(id INTEGER PRIMARY KEY, setting TEXT, active INTEGER)');
     }, version: 1);
   }
 

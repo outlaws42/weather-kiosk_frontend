@@ -1,10 +1,12 @@
 // import 'dart:math';
 
 import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
 import '../models/current_model.dart';
 import '../models/forecast_model.dart';
 import '../models/past_model.dart';
 import '../models/indoor_model.dart';
+// import './settings_provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
