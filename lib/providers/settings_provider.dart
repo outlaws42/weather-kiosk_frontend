@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weatherkiosk/helpers/db_helper.dart';
+import '../helpers/db_helper.dart';
 import '../models/settings_model.dart';
 
 class SettingProvider extends ChangeNotifier {

@@ -44,8 +44,12 @@ class WeatherProvider extends ChangeNotifier {
     return [..._indoor];
   }
 
-  Future<void> fetchCurrent() async {
-    final url = 'http://$baseUrl:$port/$currentUrl';
+  Future<void> fetchCurrent(
+    String baseName,
+    String portName,
+    String currentName,
+  ) async {
+    final url = 'http://$baseName:$portName/$currentName';
 
     final List<CurrentModel> loadCurrent = [];
     try {
@@ -91,8 +95,12 @@ class WeatherProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchForecast() async {
-    final url = 'http://$baseUrl:$port/$forecastUrl';
+  Future<void> fetchForecast(
+    String baseName,
+    String portName,
+    String forecastName,
+  ) async {
+    final url = 'http://$baseName:$portName/$forecastName';
 
     final List<ForecastModel> loadForecast = [];
     try {
@@ -143,6 +151,9 @@ class WeatherProvider extends ChangeNotifier {
   }
 
   Future<void> fetchPast(
+    String baseName,
+    String portName,
+    String pastName,
     String past,
   ) async {
     final url = 'http://$baseUrl:$port/$pastUrl/$past';
@@ -180,8 +191,12 @@ class WeatherProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchIndoor() async {
-    final url = 'http://$baseUrl:$port/$indoorUrl';
+  Future<void> fetchIndoor(
+    String baseName,
+    String portName,
+    String indoorName,
+  ) async {
+    final url = 'http://$baseName:$portName/$indoorName';
     final List<IndoorModel> loadIndoor = [];
     try {
       final response = await http.get(url);

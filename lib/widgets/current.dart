@@ -89,7 +89,7 @@ class Current extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: 90,
+                width: 105,
                 child: Text(
                   'Feels: ${current[0].feelsLike.toString() + degSign}',
                   style: Theme.of(context).textTheme.headline5,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../providers/weather_provider.dart';
+import '../providers/settings_provider.dart';
 import '../widgets/main_body.dart';
 import '../helpers/widget_config.dart';
 import '../helpers/icon_text.dart';
@@ -23,15 +24,46 @@ class _MainScreenState extends State<MainScreen> {
 
   void checkForAPIUpdates() {
     _isLoading = true;
-    Provider.of<WeatherProvider>(context, listen: false).fetchForecast();
-    Provider.of<WeatherProvider>(context, listen: false).fetchPast('year');
-    Provider.of<WeatherProvider>(context, listen: false).fetchPast('day');
-    Provider.of<WeatherProvider>(context, listen: false).fetchIndoor();
-    Provider.of<WeatherProvider>(context, listen: false)
-        .fetchCurrent()
+
+    Provider.of<SettingProvider>(context, listen: false)
+        .fetchSettings()
         .then((_) {
-      setState(() {
-        _isLoading = false;
+      var setter =
+          Provider.of<SettingProvider>(context, listen: false).settings;
+      final baseName = setter[0].setting;
+      final portName = setter[1].setting;
+      Provider.of<WeatherProvider>(context, listen: false).fetchForecast(
+        baseName,
+        portName,
+        setter[3].setting,
+      );
+      Provider.of<WeatherProvider>(context, listen: false).fetchPast(
+        baseName,
+        portName,
+        setter[4].setting,
+        'year',
+      );
+      Provider.of<WeatherProvider>(context, listen: false).fetchPast(
+        baseName,
+        portName,
+        setter[4].setting,
+        'day',
+      );
+      Provider.of<WeatherProvider>(context, listen: false).fetchIndoor(
+        baseName,
+        portName,
+        setter[5].setting,
+      );
+      Provider.of<WeatherProvider>(context, listen: false)
+          .fetchCurrent(
+        baseName,
+        portName,
+        setter[2].setting,
+      )
+          .then((_) {
+        setState(() {
+          _isLoading = false;
+        });
       });
     });
   }
@@ -41,18 +73,43 @@ class _MainScreenState extends State<MainScreen> {
     // SystemChrome.setEnabledSystemUIOverlays([]);
     timer = Timer.periodic(
         Duration(seconds: 30), (Timer t) => checkForAPIUpdates());
-    _isLoading = true;
-    Provider.of<WeatherProvider>(context, listen: false).fetchForecast();
-    Provider.of<WeatherProvider>(context, listen: false).fetchPast('year');
-    Provider.of<WeatherProvider>(context, listen: false).fetchPast('day');
-    Provider.of<WeatherProvider>(context, listen: false).fetchIndoor();
-    Provider.of<WeatherProvider>(context, listen: false)
-        .fetchCurrent()
-        .then((_) {
-      setState(() {
-        _isLoading = false;
-      });
-    });
+    checkForAPIUpdates();
+
+    // final baseName = '192.168.1.3';
+    // final portName = '5000';
+    // Provider.of<WeatherProvider>(context, listen: false).fetchForecast(
+    //   baseName,
+    //   portName,
+    //   'forecast',
+    // );
+    // Provider.of<WeatherProvider>(context, listen: false).fetchPast(
+    //   baseName,
+    //   portName,
+    //   'past',
+    //   'year',
+    // );
+    // Provider.of<WeatherProvider>(context, listen: false).fetchPast(
+    //   baseName,
+    //   portName,
+    //   'past',
+    //   'day',
+    // );
+    // Provider.of<WeatherProvider>(context, listen: false).fetchIndoor(
+    //   baseName,
+    //   portName,
+    //   'indoor',
+    // );
+    // Provider.of<WeatherProvider>(context, listen: false)
+    //     .fetchCurrent(
+    //   baseName,
+    //   portName,
+    //   'current',
+    // )
+    //     .then((_) {
+    //   setState(() {
+    //     _isLoading = false;
+    //   });
+    // });
     super.initState();
   }
 
