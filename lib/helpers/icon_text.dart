@@ -53,18 +53,18 @@ class IconText {
 
   String getBackground(
     int code,
-    int time,
     int sunriseTS,
     int sunsetTS,
   ) {
     var sunrise = sunriseTS;
     var sunset = sunsetTS;
-    var updateTime = time;
-    var dateTime = DateTime.fromMillisecondsSinceEpoch(updateTime * 1000);
+    var now = DateTime.now().millisecondsSinceEpoch / 1000;
+    var currentTime = now.toInt();
+    var dateTime = DateTime.fromMillisecondsSinceEpoch(currentTime * 1000);
     var season = getSeason(dateTime.month);
     print('Season$season.jpg');
 
-    if (updateTime >= sunset || updateTime >= 0 && updateTime < sunrise) {
+    if (currentTime >= sunset || currentTime >= 0 && currentTime < sunrise) {
       return 'night.jpg';
     } else if (code == 800) {
       return 'sunny$season.jpg';

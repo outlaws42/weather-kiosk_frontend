@@ -92,7 +92,6 @@ class _MainScreenState extends State<MainScreen> {
       final currentCode = current[0].icon;
       imageName = IconText().getBackground(
         currentCode,
-        current[0].updated,
         current[0].sunrise,
         current[0].sunset,
       );
