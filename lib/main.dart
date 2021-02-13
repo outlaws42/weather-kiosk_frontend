@@ -6,6 +6,7 @@ import './providers/weather_provider.dart';
 import './providers/settings_provider.dart';
 import './helpers/theme_config.dart';
 import './screens/main_screen.dart';
+import './screens/settings_first.dart';
 
 void main() {
   runApp(
@@ -29,20 +30,31 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, appState, child) {
-        return ScreenUtilInit(
-          designSize: Size(640, 384),
-          allowFontScaling: false,
-          child: MaterialApp(
-            title: 'Weather Kiosk',
-            theme: ThemeConfig.lightTheme,
-            // darkTheme: ThemeConfig.darkTheme,
-            home: MainScreen(),
-            // themeMode: appState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-          ),
-        );
-      },
+    return FutureBuilder(
+      future:
+          Provider.of<SettingProvider>(context, listen: false).fetchSettings(),
+      builder: (ctx, snapshot) =>
+          snapshot.connectionState == ConnectionState.waiting
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Consumer<SettingProvider>(
+                  builder: (cont, setting, _) {
+                    return ScreenUtilInit(
+                      designSize: Size(640, 384),
+                      allowFontScaling: false,
+                      child: MaterialApp(
+                        title: 'Weather Kiosk',
+                        theme: ThemeConfig.lightTheme,
+                        // darkTheme: ThemeConfig.darkTheme,
+                        home: setting.settings.length <= 5
+                            ? SettingsFirst()
+                            : MainScreen(),
+                        // themeMode: appState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+                      ),
+                    );
+                  },
+                ),
     );
   }
 }

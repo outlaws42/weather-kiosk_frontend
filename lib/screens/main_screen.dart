@@ -70,47 +70,17 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    // SystemChrome.setEnabledSystemUIOverlays([]);
+    //dependOnInheritedWidgetOfExactType()
     timer = Timer.periodic(
         Duration(seconds: 30), (Timer t) => checkForAPIUpdates());
     checkForAPIUpdates();
-
-    // final baseName = '192.168.1.3';
-    // final portName = '5000';
-    // Provider.of<WeatherProvider>(context, listen: false).fetchForecast(
-    //   baseName,
-    //   portName,
-    //   'forecast',
-    // );
-    // Provider.of<WeatherProvider>(context, listen: false).fetchPast(
-    //   baseName,
-    //   portName,
-    //   'past',
-    //   'year',
-    // );
-    // Provider.of<WeatherProvider>(context, listen: false).fetchPast(
-    //   baseName,
-    //   portName,
-    //   'past',
-    //   'day',
-    // );
-    // Provider.of<WeatherProvider>(context, listen: false).fetchIndoor(
-    //   baseName,
-    //   portName,
-    //   'indoor',
-    // );
-    // Provider.of<WeatherProvider>(context, listen: false)
-    //     .fetchCurrent(
-    //   baseName,
-    //   portName,
-    //   'current',
-    // )
-    //     .then((_) {
-    //   setState(() {
-    //     _isLoading = false;
-    //   });
-    // });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   @override
