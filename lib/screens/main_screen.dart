@@ -70,7 +70,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    //dependOnInheritedWidgetOfExactType()
     timer = Timer.periodic(
         Duration(seconds: 30), (Timer t) => checkForAPIUpdates());
     checkForAPIUpdates();

@@ -9,20 +9,6 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  // void intSetup() {
-  //   // This will populate the database with default setup options
-  //   Provider.of<SettingProvider>(context, listen: false)
-  //       .addSettings(1, '192.168.1.3');
-  //   Provider.of<SettingProvider>(context, listen: false).addSettings(2, '5000');
-  //   Provider.of<SettingProvider>(context, listen: false)
-  //       .addSettings(3, 'current');
-  //   Provider.of<SettingProvider>(context, listen: false)
-  //       .addSettings(4, 'forecast');
-  //   Provider.of<SettingProvider>(context, listen: false).addSettings(5, 'past');
-  //   Provider.of<SettingProvider>(context, listen: false)
-  //       .addSettings(6, 'indoor');
-  // }
-
   void saveEach(int id, String setting) {
     // Save for each field save
     if (setting.isEmpty) {
@@ -33,37 +19,13 @@ class _SettingsState extends State<Settings> {
     print(setting);
   }
 
-  // String baseUrl;
-  // String port;
-  // String currentUrl;
-  // String forecastUrl;
-  // String pastUrl;
-  // String indoorUrl;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
       ),
-      // body: FutureBuilder(
-      //   future: Provider.of<SettingProvider>(context, listen: false)
-      //       .fetchSettings(),
-      //   builder: (ctx, snapshot) => snapshot.connectionState ==
-      //           ConnectionState.waiting
-      //       ? Center(
-      //           child: CircularProgressIndicator(),
-      //         )
       body: Consumer<SettingProvider>(
-        // child: Center(
-        //   // This is shown if the settings has no length
-        //   child: RaisedButton.icon(
-        //       onPressed: intSetup,
-        //       textColor: Colors.white54,
-        //       color: Colors.teal,
-        //       icon: Icon(Icons.save_rounded),
-        //       label: Text('Setup Default Settings')),
-        // ),
         builder: (ctx, payload, ch) => payload.settings.length < 5
             ? ch
             : SingleChildScrollView(
@@ -82,7 +44,6 @@ class _SettingsState extends State<Settings> {
                       TextFormField(
                         initialValue: payload.settings[0].setting,
                         onFieldSubmitted: (value) {
-                          // baseUrl = value;
                           saveEach(1, value);
                         },
                         style: TextStyle(
@@ -103,7 +64,6 @@ class _SettingsState extends State<Settings> {
                       TextFormField(
                         initialValue: payload.settings[1].setting,
                         onFieldSubmitted: (value) {
-                          // port = value;
                           saveEach(2, value);
                         },
                         style: TextStyle(
@@ -131,7 +91,6 @@ class _SettingsState extends State<Settings> {
                       TextFormField(
                         initialValue: payload.settings[2].setting,
                         onFieldSubmitted: (value) {
-                          // currentUrl = value;
                           saveEach(3, value);
                         },
                         style: TextStyle(
@@ -152,7 +111,6 @@ class _SettingsState extends State<Settings> {
                       TextFormField(
                         initialValue: payload.settings[3].setting,
                         onFieldSubmitted: (value) {
-                          // forecastUrl = value;
                           saveEach(4, value);
                         },
                         style: TextStyle(
@@ -173,7 +131,6 @@ class _SettingsState extends State<Settings> {
                       TextFormField(
                         initialValue: payload.settings[4].setting,
                         onFieldSubmitted: (value) {
-                          // pastUrl = value;
                           saveEach(5, value);
                         },
                         style: TextStyle(
@@ -194,7 +151,6 @@ class _SettingsState extends State<Settings> {
                       TextFormField(
                         initialValue: payload.settings[5].setting,
                         onFieldSubmitted: (value) {
-                          // indoorUrl = value;
                           saveEach(6, value);
                         },
                         style: TextStyle(

@@ -47,14 +47,12 @@ class MyApp extends StatelessWidget {
                       child: MaterialApp(
                         title: 'Weather Kiosk',
                         theme: ThemeConfig.lightTheme,
-                        // darkTheme: ThemeConfig.darkTheme,
                         home: setting.settings.length <= 5
                             ? SettingsFirst()
                             : MainScreen(),
                         routes: {
                           Settings.routeName: (ctx) => Settings(),
                         },
-                        // themeMode: appState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
                       ),
                     );
                   },
