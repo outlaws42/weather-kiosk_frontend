@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/settings_provider.dart';
 
 class Settings extends StatefulWidget {
+  static const routeName = 'settings';
   @override
   _SettingsState createState() => _SettingsState();
 }

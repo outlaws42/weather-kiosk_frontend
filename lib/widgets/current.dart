@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+// import '../main.dart';
 import './settings.dart';
 import '../providers/weather_provider.dart';
 import '../helpers/widget_config.dart';
@@ -9,6 +10,10 @@ import '../helpers/icon_text.dart';
 import './indoor.dart';
 
 class Current extends StatelessWidget {
+  void selectSettings(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(Settings.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     final current = Provider.of<WeatherProvider>(context).current;
@@ -75,10 +80,7 @@ class Current extends StatelessWidget {
                     icon: Image.asset("assets/images/65/$imageName"),
                     iconSize: 65,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Settings()),
-                      );
+                      selectSettings(context);
                     },
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import './widgets/settings.dart';
 import './providers/theme_provider.dart';
 import './providers/weather_provider.dart';
 import './providers/settings_provider.dart';
@@ -50,6 +51,9 @@ class MyApp extends StatelessWidget {
                         home: setting.settings.length <= 5
                             ? SettingsFirst()
                             : MainScreen(),
+                        routes: {
+                          Settings.routeName: (ctx) => Settings(),
+                        },
                         // themeMode: appState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
                       ),
                     );
