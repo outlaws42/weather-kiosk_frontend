@@ -71,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     timer = Timer.periodic(
-        Duration(seconds: 30), (Timer t) => checkForAPIUpdates());
+        Duration(seconds: 300), (Timer t) => checkForAPIUpdates());
     checkForAPIUpdates();
     super.initState();
   }

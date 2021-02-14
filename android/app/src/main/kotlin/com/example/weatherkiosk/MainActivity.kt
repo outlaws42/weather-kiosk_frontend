@@ -1,4 +1,4 @@
-package com.example.weatherkiosk
+package com.eldrway.weatherkiosk
 
 import io.flutter.embedding.android.FlutterActivity
 
