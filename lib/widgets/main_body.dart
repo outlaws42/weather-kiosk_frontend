@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './current.dart';
-import '../providers/theme_provider.dart';
 import '../providers/weather_provider.dart';
 import './past.dart';
 import './time.dart';
 import './forecast.dart';
-import 'forecast.dart';
 
 class MainBody extends StatefulWidget {
   @override
@@ -16,10 +14,7 @@ class MainBody extends StatefulWidget {
 class _MainBodyState extends State<MainBody> {
   @override
   Widget build(BuildContext context) {
-    final themeData = Provider.of<ThemeProvider>(context, listen: false);
     final forecast = Provider.of<WeatherProvider>(context).forecast;
-    bool _isDarkMode = themeData.isDarkMode;
-    print(_isDarkMode);
     return Column(
       children: [
         Row(

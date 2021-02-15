@@ -33,7 +33,7 @@ class _TimeState extends State<Time> {
         DateFormat.jm().format(DateTime.now()).toString();
     setState(() {
       _timeString = formattedDateTime;
-      print(_timeString);
+      // print(_timeString);
     });
   }
 

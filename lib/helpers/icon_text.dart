@@ -62,7 +62,7 @@ class IconText {
     var currentTime = now.toInt();
     var dateTime = DateTime.fromMillisecondsSinceEpoch(currentTime * 1000);
     var season = getSeason(dateTime.month);
-    print('Season$season.jpg');
+    // print('Season$season.jpg');
 
     if (currentTime >= sunset || currentTime >= 0 && currentTime < sunrise) {
       return 'night.jpg';

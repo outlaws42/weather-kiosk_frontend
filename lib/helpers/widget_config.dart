@@ -32,7 +32,7 @@ class WidgetConfig {
       borderEqual = true;
     }
 
-    print('borderEqual: $borderEqual');
+    // print('borderEqual: $borderEqual');
 
     return Container(
       width: width,
@@ -98,7 +98,7 @@ class WidgetConfig {
       borderEqual = true;
     }
 
-    print('borderEqual: $borderEqual');
+    // print('borderEqual: $borderEqual');
 
     return Container(
       width: width,
@@ -153,7 +153,7 @@ class WidgetConfig {
       borderEqual = true;
     }
 
-    print('borderEqual: $borderEqual');
+    // print('borderEqual: $borderEqual');
 
     return Container(
       width: width,
@@ -205,7 +205,7 @@ class WidgetConfig {
     BuildContext context,
     Widget child,
   }) {
-    print(backImage);
+    // print(backImage);
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
