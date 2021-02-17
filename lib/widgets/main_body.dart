@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import './current.dart';
 import '../providers/weather_provider.dart';
 import './past.dart';
-import './time.dart';
+import 'dt.dart';
 import './forecast.dart';
 
 class MainBody extends StatefulWidget {
@@ -22,7 +22,7 @@ class _MainBodyState extends State<MainBody> {
           children: [
             Past(),
             Current(),
-            Time(),
+            DT(),
           ],
         ),
         Row(

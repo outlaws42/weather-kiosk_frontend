@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import './settings.dart';
+import 'indoor.dart';
+import '../screens/settings.dart';
 import '../providers/weather_provider.dart';
 import '../helpers/widget_config.dart';
 import '../helpers/icon_text.dart';
-import './indoor.dart';
 
 class Current extends StatelessWidget {
   void selectSettings(BuildContext ctx) {

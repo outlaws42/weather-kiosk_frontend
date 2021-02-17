@@ -49,11 +49,6 @@ class _MainScreenState extends State<MainScreen> {
         setter[4].setting,
         'day',
       );
-      Provider.of<WeatherProvider>(context, listen: false).fetchIndoor(
-        baseName,
-        portName,
-        setter[5].setting,
-      );
       Provider.of<WeatherProvider>(context, listen: false)
           .fetchCurrent(
         baseName,

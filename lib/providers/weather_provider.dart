@@ -7,13 +7,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class WeatherProvider extends ChangeNotifier {
-  final baseUrl = '192.168.1.3';
-  final port = 5000;
-  final currentUrl = 'current';
-  final forecastUrl = 'forecast';
-  final pastUrl = 'past';
-  final indoorUrl = 'indoor';
-
   List<CurrentModel> _current = [];
   List<ForecastModel> _forecast = [];
   List<PastModel> _year = [];
@@ -152,7 +145,7 @@ class WeatherProvider extends ChangeNotifier {
     String pastName,
     String past,
   ) async {
-    final url = 'http://$baseUrl:$port/$pastUrl/$past';
+    final url = 'http://$baseName:$portName/$pastName/$past';
     final List<PastModel> loadPast = [];
     try {
       final response = await http.get(url);
