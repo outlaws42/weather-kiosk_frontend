@@ -4,9 +4,15 @@ import '../models/settings_model.dart';
 
 class SettingProvider extends ChangeNotifier {
   List<SettingsModel> _settings = [];
+  // String _version = '';
 
   List<SettingsModel> get settings {
     return [..._settings];
+  }
+
+  String get version {
+    String _version = 'V1.0.3';
+    return _version;
   }
 
   Future<void> fetchSettings() async {

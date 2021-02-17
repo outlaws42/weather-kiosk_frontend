@@ -5,22 +5,27 @@ class IconText {
     int sunriseTS,
     int sunsetTS,
   ) {
-    var updateTime = dateTime;
+    var now = DateTime.now().millisecondsSinceEpoch / 1000;
+    var currentTime = now.toInt();
+    // var updateTime = dateTime;
     var sunrise = sunriseTS;
     var sunset = sunsetTS;
 
-    if (code == 800 && updateTime >= sunrise && updateTime < sunset) {
+    if (code == 800 && currentTime >= sunrise && currentTime < sunset) {
       return 'clear-day.png';
-    } else if (code == 800 && updateTime >= sunset ||
-        code == 800 && updateTime >= 0 && updateTime < sunrise) {
+    } else if (code == 800 && currentTime >= sunset ||
+        code == 800 && currentTime >= 0 && currentTime < sunrise) {
       return 'clear-night.png';
     } else if (code >= 801 &&
         code <= 802 &&
-        updateTime >= sunrise &&
-        updateTime < sunset) {
+        currentTime >= sunrise &&
+        currentTime < sunset) {
       return 'partly-cloudy-day.png';
-    } else if (code >= 801 && code <= 802 && updateTime >= sunset ||
-        code >= 801 && code <= 802 && updateTime >= 0 && updateTime < sunrise) {
+    } else if (code >= 801 && code <= 802 && currentTime >= sunset ||
+        code >= 801 &&
+            code <= 802 &&
+            currentTime >= 0 &&
+            currentTime < sunrise) {
       return 'partly-cloudy-night.png';
     } else if (code >= 803 && code <= 804) {
       return 'cloudy.png';

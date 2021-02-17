@@ -21,9 +21,16 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final ver = Provider.of<SettingProvider>(context).version;
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Weather Kiosk $ver'),
+          ),
+        ],
       ),
       body: Consumer<SettingProvider>(
         builder: (ctx, payload, ch) => payload.settings.length < 5
