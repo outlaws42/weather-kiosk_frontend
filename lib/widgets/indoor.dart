@@ -32,10 +32,10 @@ class _IndoorState extends State<Indoor> {
 
   @override
   void initState() {
+    super.initState();
     time = Timer.periodic(
         Duration(seconds: 45), (Timer t) => checkForAPIUpdates());
     checkForAPIUpdates();
-    super.initState();
   }
 
   @override
