@@ -38,7 +38,7 @@ class WeatherProvider extends ChangeNotifier {
     String portName,
     String currentName,
   ) async {
-    final url = 'http://$baseName:$portName/$currentName';
+    final url = 'http://$baseName:$portName/weather/$currentName';
 
     final List<CurrentModel> loadCurrent = [];
     try {
@@ -89,7 +89,7 @@ class WeatherProvider extends ChangeNotifier {
     String portName,
     String forecastName,
   ) async {
-    final url = 'http://$baseName:$portName/$forecastName';
+    final url = 'http://$baseName:$portName/weather/$forecastName';
 
     final List<ForecastModel> loadForecast = [];
     try {
@@ -145,7 +145,7 @@ class WeatherProvider extends ChangeNotifier {
     String pastName,
     String past,
   ) async {
-    final url = 'http://$baseName:$portName/$pastName/$past';
+    final url = 'http://$baseName:$portName/weather/$pastName/$past';
     final List<PastModel> loadPast = [];
     try {
       final response = await http.get(url);
@@ -184,7 +184,7 @@ class WeatherProvider extends ChangeNotifier {
     String portName,
     String indoorName,
   ) async {
-    final url = 'http://$baseName:$portName/$indoorName';
+    final url = 'http://$baseName:$portName/weather/$indoorName';
     final List<IndoorModel> loadIndoor = [];
     try {
       final response = await http.get(url);

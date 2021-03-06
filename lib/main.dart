@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'screens/settings.dart';
 import './providers/theme_provider.dart';
 import './providers/weather_provider.dart';
+import './providers/sensors_provider.dart';
 import './providers/settings_provider.dart';
 import 'providers/dt_provider.dart';
 import './helpers/theme_config.dart';
@@ -19,6 +20,9 @@ void main() {
         ),
         ChangeNotifierProvider<WeatherProvider>(
           create: (ctx) => WeatherProvider(),
+        ),
+        ChangeNotifierProvider<SensorsProvider>(
+          create: (ctx) => SensorsProvider(),
         ),
         ChangeNotifierProvider<SettingProvider>(
           create: (ctx) => SettingProvider(),
