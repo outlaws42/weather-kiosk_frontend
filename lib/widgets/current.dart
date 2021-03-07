@@ -97,7 +97,7 @@ class Current extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 65,
+                width: 120,
                 child: Text(
                   '${current[0].status.toString()}',
                   style: Theme.of(context).textTheme.headline5,

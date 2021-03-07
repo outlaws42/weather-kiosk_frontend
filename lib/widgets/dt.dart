@@ -19,7 +19,7 @@ class _DTState extends State<DT> {
   void initState() {
     super.initState();
     clock = Timer.periodic(Duration(seconds: 1), (Timer t) => _getDateTime());
-    gd = Timer.periodic(Duration(seconds: 5), (Timer t) => _getGDStatus());
+    gd = Timer.periodic(Duration(seconds: 2), (Timer t) => _getGDStatus());
   }
 
   @override
