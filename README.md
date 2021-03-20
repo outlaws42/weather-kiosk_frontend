@@ -5,7 +5,7 @@ Currently when the app starts for
 the first time a setup page will open to put in the server and port number. The secondary urls can be changed as well but they are auto populated with the current ones from the backend code.
 
 ## Prerequisites
-Requieres:  Flutter, "provider" module, "http" module, "intl" module, This also requires the [weather-kiosk_Backend](https://github.com/outlaws42/weather-kiosk_backend) to be running on the local network or over the internet to serve up the data needed.   
+Requieres:  Flutter, "provider" module, "http" module, "intl" module, This also requires the [home API](https://github.com/outlaws42/home) to be running on the local network or over the internet to serve up the data needed.   
 
 
 
