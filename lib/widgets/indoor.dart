@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/weather_provider.dart';
+// import '../providers/weather_provider.dart';
+import '../providers/sensors_provider.dart';
 import '../providers/settings_provider.dart';
 
 class Indoor extends StatefulWidget {
@@ -22,10 +23,10 @@ class _IndoorState extends State<Indoor> {
           Provider.of<SettingProvider>(context, listen: false).settings;
       final baseName = setter[0].setting;
       final portName = setter[1].setting;
-      Provider.of<WeatherProvider>(context, listen: false).fetchIndoor(
+      Provider.of<SensorsProvider>(context, listen: false).fetchFRTemp(
         baseName,
         portName,
-        setter[5].setting,
+        'frtemp',// setter[5].setting,
       );
     });
   }
@@ -34,7 +35,7 @@ class _IndoorState extends State<Indoor> {
   void initState() {
     super.initState();
     time = Timer.periodic(
-        Duration(seconds: 45), (Timer t) => checkForAPIUpdates());
+        Duration(seconds: 5), (Timer t) => checkForAPIUpdates());
     checkForAPIUpdates();
   }
 
@@ -49,15 +50,15 @@ class _IndoorState extends State<Indoor> {
     // final indoor = Provider.of<WeatherProvider>(context).indoor;
     final degSign = '\u00B0';
 
-    return Consumer<WeatherProvider>(
+    return Consumer<SensorsProvider>(
       child: Text('NA'),
-      builder: (ctx, payload, ch) => payload.indoor.length == 0
+      builder: (ctx, payload, ch) => payload.frTemp.length == 0
           ? ch
           : Container(
               margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
               alignment: Alignment.center,
               child: Text(
-                '${payload.indoor[0].front.toString() + degSign} | ',
+                '${payload.frTemp[0].sensorVal.toString() + degSign} | ',
                 style: Theme.of(context).textTheme.headline2,
               ),
             ),

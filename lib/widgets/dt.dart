@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../providers/dt_provider.dart';
 import '../providers/sensors_provider.dart';
+import '../providers/settings_provider.dart';
 import '../helpers/widget_config.dart';
 
 class DT extends StatefulWidget {
@@ -34,10 +35,29 @@ class _DTState extends State<DT> {
     Provider.of<DTProvider>(context, listen: false).getDateTime();
   }
 
+  // void _getGDStatus() {
+  //   // Get the Garage door open/close status
+  //   Provider.of<SensorsProvider>(context, listen: false)
+  //       .fetchGDStatus('192.168.1.3', '8000','gdbasement');
+  // }
+
   void _getGDStatus() {
-    // Get the Garage door open/close status
-    Provider.of<SensorsProvider>(context, listen: false)
-        .fetchSensors('192.168.1.3', '5500');
+    // _isLoading = true;
+
+    Provider.of<SettingProvider>(context, listen: false)
+        .fetchSettings()
+        .then((_) {
+      // Get the Garage door open/close status
+      var setter =
+          Provider.of<SettingProvider>(context, listen: false).settings;
+      final baseName = setter[0].setting;
+      final portName = setter[1].setting;
+      Provider.of<SensorsProvider>(context, listen: false).fetchGDStatus(
+        baseName,
+        portName,
+        'gdbasement',// setter[5].setting,
+      );
+    });
   }
 
   @override
@@ -84,7 +104,7 @@ class _DTState extends State<DT> {
           ),
           Consumer<SensorsProvider>(
             child: CircularProgressIndicator(),
-            builder: (ctx, payload, ch) => payload.sensors.length == 0
+            builder: (ctx, payload, ch) => payload.gdBasement.length == 0
                 ? ch
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -97,7 +117,7 @@ class _DTState extends State<DT> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         alignment: Alignment.center,
                         child: Text(
-                          payload.sensors[0].gdStatus,
+                          payload.gdBasement[0].sensorVal == 0 ? 'Closed' : 'Open',
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ),

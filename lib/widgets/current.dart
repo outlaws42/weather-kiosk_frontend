@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_icons/weather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -16,11 +17,17 @@ class Current extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final current = Provider.of<WeatherProvider>(context).current;
-    final dateTime =
+    final updateEpoch =
         DateTime.fromMillisecondsSinceEpoch(current[0].updated * 1000);
-    final formattedTime = DateFormat('hh:mm a').format(dateTime);
+    final formattedUpdateTime = DateFormat('hh:mm a').format(updateEpoch);
+    final sunriseEpoch =
+        DateTime.fromMillisecondsSinceEpoch(current[0].sunrise * 1000);
+    final sunriseTime = DateFormat('hh:mm a').format(sunriseEpoch);
+    final sunsetEpoch =
+        DateTime.fromMillisecondsSinceEpoch(current[0].sunset * 1000);
+    final sunsetTime = DateFormat('hh:mm a').format(sunsetEpoch);
     final degSign = '\u00B0';
-    final refresh = '\u21BB';
+    // final refresh = '\u21BB';
     final iconCode = current[0].icon;
 
     final imageName = IconText().getImages(
@@ -86,37 +93,85 @@ class Current extends StatelessWidget {
               ],
             ),
           ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              BoxedIcon(
+                WeatherIcons.humidity,
+                color: Colors.white,
+              ),
               Container(
-                width: 105,
                 child: Text(
-                  'Feels: ${current[0].feelsLike.toString() + degSign}',
+                  '${current[0].humidity}',
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ),
+              BoxedIcon(
+                WeatherIcons.thermometer,
+                color: Colors.white,
+              ),
               Container(
-                width: 120,
+                // width: 105,
                 child: Text(
-                  '${current[0].status.toString()}',
+                  '${current[0].feelsLike.toString() + degSign}',
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ),
             ],
           ),
-          Container(
-            child: Text(
-              'Humidity: ${current[0].humidity}',
-              style: Theme.of(context).textTheme.headline5,
-            ),
+
+          //   ],
+          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BoxedIcon(
+                WeatherIcons.sunrise,
+                color: Colors.white,
+              ),
+              Container(
+                child: Text(
+                  '$sunriseTime',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ),
+              BoxedIcon(
+                WeatherIcons.sunset,
+                color: Colors.white,
+              ),
+              Container(
+                child: Text(
+                  '$sunsetTime',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ),
+            ],
           ),
-          Container(
-            child: Text(
-              '${refresh + formattedTime}',
-              style: Theme.of(context).textTheme.headline5,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BoxedIcon(
+                WeatherIcons.refresh,
+                color: Colors.white,
+              ),
+              Container(
+                child: Text(
+                  '$formattedUpdateTime',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ),
+            ],
           ),
+          // Container(
+          //   // width: 120,
+          //   child: Text(
+          //     '${current[0].status.toString()}',
+          //     style: Theme.of(context).textTheme.headline5,
+          //   ),
+          // ),
         ],
       ),
     );

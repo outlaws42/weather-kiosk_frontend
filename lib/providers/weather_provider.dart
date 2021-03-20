@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/current_model.dart';
 import '../models/forecast_model.dart';
 import '../models/past_model.dart';
-import '../models/indoor_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -11,7 +10,7 @@ class WeatherProvider extends ChangeNotifier {
   List<ForecastModel> _forecast = [];
   List<PastModel> _year = [];
   List<PastModel> _day = [];
-  List<IndoorModel> _indoor = [];
+  // List<IndoorModel> _indoor = [];
 
   List<CurrentModel> get current {
     return [..._current];
@@ -29,9 +28,9 @@ class WeatherProvider extends ChangeNotifier {
     return [..._day];
   }
 
-  List<IndoorModel> get indoor {
-    return [..._indoor];
-  }
+  // List<IndoorModel> get indoor {
+  //   return [..._indoor];
+  // }
 
   Future<void> fetchCurrent(
     String baseName,
@@ -106,9 +105,12 @@ class WeatherProvider extends ChangeNotifier {
               day0Pop: value['day0_pop'],
               day1Pop: value['day1_pop'],
               day2Pop: value['day2_pop'],
-              day0Temp: value['day0_temp'],
-              day1Temp: value['day1_temp'],
-              day2Temp: value['day2_temp'],
+              day0TempLow: value['day0_temp_low'],
+              day0TempHigh: value['day0_temp_high'],
+              day1TempLow: value['day1_temp_low'],
+              day1TempHigh: value['day1_temp_high'],
+              day2TempLow: value['day2_temp_low'],
+              day2TempHigh: value['day2_temp_high'],
               day0Dow: value['day0_dow'],
               day1Dow: value['day1_dow'],
               day2Dow: value['day2_dow']),
@@ -126,9 +128,12 @@ class WeatherProvider extends ChangeNotifier {
           day0Pop: inErrorString,
           day1Pop: inErrorString,
           day2Pop: inErrorString,
-          day0Temp: inErrorString,
-          day1Temp: inErrorString,
-          day2Temp: inErrorString,
+          day0TempLow: inErrorInt,
+          day0TempHigh: inErrorInt,
+          day1TempLow: inErrorInt,
+          day1TempHigh: inErrorInt,
+          day2TempLow: inErrorInt,
+          day2TempHigh: inErrorInt,
           day0Dow: inErrorString,
           day1Dow: inErrorString,
           day2Dow: inErrorString,
@@ -179,44 +184,4 @@ class WeatherProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchIndoor(
-    String baseName,
-    String portName,
-    String indoorName,
-  ) async {
-    final url = 'http://$baseName:$portName/weather/$indoorName';
-    final List<IndoorModel> loadIndoor = [];
-    try {
-      final response = await http.get(url);
-      print(response.body);
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
-      extractedData.forEach((key, value) {
-        if (value['front_room'] > 0) {
-          loadIndoor.add(
-            IndoorModel(
-              front: value['front_room'],
-              date: value['dt'],
-            ),
-          );
-        } else {
-          loadIndoor.add(
-            IndoorModel(
-              front: 0,
-              date: value['dt'],
-            ),
-          );
-        }
-      });
-    } catch (error) {
-      loadIndoor.add(
-        IndoorModel(
-          front: 0,
-          date: 0,
-        ),
-      );
-    }
-
-    _indoor = loadIndoor;
-    notifyListeners();
-  }
 }

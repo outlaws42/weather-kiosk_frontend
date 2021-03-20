@@ -9,18 +9,21 @@ class Forecast extends StatelessWidget {
   final String day;
   final String pop;
   final int icon;
-  final String temp;
+  final int tempHigh;
+  final int tempLow;
 
   Forecast({
     this.day,
     this.pop,
     this.icon,
-    this.temp,
+    this.tempHigh,
+    this.tempLow,
   });
 
   @override
   Widget build(BuildContext context) {
     final current = Provider.of<WeatherProvider>(context).current;
+    final degSign = '\u00B0';
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -60,10 +63,11 @@ class Forecast extends StatelessWidget {
                 current[0].sunrise,
                 current[0].sunset,
               )}"),
-              Text(
-                temp,
-                style: Theme.of(context).textTheme.headline6,
-              ),
+                  Text(
+                    '$tempHigh$degSign/$tempLow$degSign',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+
             ],
           ),
         ),

@@ -10,9 +10,12 @@ class ForecastModel with ChangeNotifier {
   final String day0Pop;
   final String day1Pop;
   final String day2Pop;
-  final String day0Temp;
-  final String day1Temp;
-  final String day2Temp;
+  final int day0TempLow;
+  final int day0TempHigh;
+  final int day1TempLow;
+  final int day1TempHigh;
+  final int day2TempLow;
+  final int day2TempHigh;
   final String day0Dow;
   final String day1Dow;
   final String day2Dow;
@@ -25,9 +28,12 @@ class ForecastModel with ChangeNotifier {
       this.day0Pop,
       this.day1Pop,
       this.day2Pop,
-      this.day0Temp,
-      this.day1Temp,
-      this.day2Temp,
+      this.day0TempLow,
+      this.day0TempHigh,
+      this.day1TempLow,
+      this.day1TempHigh,
+      this.day2TempLow,
+      this.day2TempHigh,
       this.day0Dow,
       this.day1Dow,
       this.day2Dow
