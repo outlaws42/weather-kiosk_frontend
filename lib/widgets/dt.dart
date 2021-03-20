@@ -55,7 +55,7 @@ class _DTState extends State<DT> {
       Provider.of<SensorsProvider>(context, listen: false).fetchGDStatus(
         baseName,
         portName,
-        'gdbasement',// setter[5].setting,
+        setter[6].setting,
       );
     });
   }

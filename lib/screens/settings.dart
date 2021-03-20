@@ -90,7 +90,7 @@ class _SettingsState extends State<Settings> {
                       Container(
                         padding: EdgeInsets.only(top: 15),
                         child: Text(
-                          'Category\'s URL',
+                          'Weather API Calls',
                           style: Theme.of(context).textTheme.headline4,
                         ),
                       ),
@@ -105,7 +105,7 @@ class _SettingsState extends State<Settings> {
                           decorationColor: Colors.teal, //Font color change
                         ),
                         decoration: InputDecoration(
-                          labelText: "Current URL",
+                          labelText: "Current Weather",
                           labelStyle: TextStyle(color: Colors.white60),
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
@@ -125,7 +125,7 @@ class _SettingsState extends State<Settings> {
                           decorationColor: Colors.teal, //Font color change
                         ),
                         decoration: InputDecoration(
-                          labelText: "Forecast URL",
+                          labelText: "Weather Forecast",
                           labelStyle: TextStyle(color: Colors.white60),
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
@@ -145,13 +145,20 @@ class _SettingsState extends State<Settings> {
                           decorationColor: Colors.teal, //Font color change
                         ),
                         decoration: InputDecoration(
-                          labelText: "Past URL",
+                          labelText: "Weather History",
                           labelStyle: TextStyle(color: Colors.white60),
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
                                 color: Colors.teal, width: 2.0),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: 15),
+                        child: Text(
+                          'Sensors API Calls',
+                          style: Theme.of(context).textTheme.headline4,
                         ),
                       ),
                       //Indoor
@@ -165,7 +172,28 @@ class _SettingsState extends State<Settings> {
                           decorationColor: Colors.teal, //Font color change
                         ),
                         decoration: InputDecoration(
-                          labelText: "Indoor URL",
+                          labelText: "Indoor Temp Sensor",
+                          labelStyle: TextStyle(color: Colors.white60),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Colors.teal, width: 2.0),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      
+                      //Garage Door
+                      TextFormField(
+                        initialValue: payload.settings[6].setting,
+                        onFieldSubmitted: (value) {
+                          saveEach(7, value);
+                        },
+                        style: TextStyle(
+                          color: Colors.white,
+                          decorationColor: Colors.teal, //Font color change
+                        ),
+                        decoration: InputDecoration(
+                          labelText: "Garage Door Sensor",
                           labelStyle: TextStyle(color: Colors.white60),
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(

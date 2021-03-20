@@ -13,7 +13,8 @@ class _SettingsFirstState extends State<SettingsFirst> {
   final _currentController = TextEditingController(text: 'current');
   final _forecastController = TextEditingController(text: 'forecast');
   final _pastController = TextEditingController(text: 'past');
-  final _indoorController = TextEditingController(text: 'indoor');
+  final _indoorController = TextEditingController(text: 'frtemp');
+  final _gdController = TextEditingController(text: 'gdbasement');
 
   void saveEach(int id, String setting) {
     // Save for each field save
@@ -33,6 +34,7 @@ class _SettingsFirstState extends State<SettingsFirst> {
     _forecastController.dispose();
     _pastController.dispose();
     _indoorController.dispose();
+    _gdController.dispose();
     super.dispose();
   }
 
@@ -105,7 +107,7 @@ class _SettingsFirstState extends State<SettingsFirst> {
                 Container(
                   padding: EdgeInsets.only(top: 15),
                   child: Text(
-                    'Category\'s URL',
+                    'Weather API Calls',
                     style: Theme.of(context).textTheme.headline4,
                   ),
                 ),
@@ -118,7 +120,7 @@ class _SettingsFirstState extends State<SettingsFirst> {
                     decorationColor: Colors.teal, //Font color change
                   ),
                   decoration: InputDecoration(
-                    labelText: "Current URL",
+                    labelText: "Current Weather",
                     labelStyle: TextStyle(color: Colors.white60),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
@@ -136,7 +138,7 @@ class _SettingsFirstState extends State<SettingsFirst> {
                     decorationColor: Colors.teal, //Font color change
                   ),
                   decoration: InputDecoration(
-                    labelText: "Forecast URL",
+                    labelText: "Weather Forecast",
                     labelStyle: TextStyle(color: Colors.white60),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
@@ -154,7 +156,7 @@ class _SettingsFirstState extends State<SettingsFirst> {
                     decorationColor: Colors.teal, //Font color change
                   ),
                   decoration: InputDecoration(
-                    labelText: "Past URL",
+                    labelText: "Weather History",
                     labelStyle: TextStyle(color: Colors.white60),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
@@ -163,6 +165,13 @@ class _SettingsFirstState extends State<SettingsFirst> {
                     ),
                   ),
                 ),
+                Container(
+                        padding: EdgeInsets.only(top: 15),
+                        child: Text(
+                          'Sensors API Calls',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                      ),
                 //Indoor
                 TextFormField(
                   controller: _indoorController,
@@ -171,7 +180,7 @@ class _SettingsFirstState extends State<SettingsFirst> {
                     decorationColor: Colors.teal, //Font color change
                   ),
                   decoration: InputDecoration(
-                    labelText: "Indoor URL",
+                    labelText: "Indoor Temp Sensor",
                     labelStyle: TextStyle(color: Colors.white60),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
@@ -180,7 +189,25 @@ class _SettingsFirstState extends State<SettingsFirst> {
                     ),
                   ),
                 ),
-                RaisedButton.icon(
+
+                //Garage Door
+                TextFormField(
+                  controller: _gdController,
+                  style: TextStyle(
+                    color: Colors.white,
+                    decorationColor: Colors.teal, //Font color change
+                  ),
+                  decoration: InputDecoration(
+                    labelText: "Garage Door Sensor",
+                    labelStyle: TextStyle(color: Colors.white60),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.teal, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                ),
+                ElevatedButton.icon(
                   onPressed: () {
                     saveEach(1, _baseurlController.text);
                     saveEach(2, _portController.text);
@@ -188,9 +215,9 @@ class _SettingsFirstState extends State<SettingsFirst> {
                     saveEach(4, _forecastController.text);
                     saveEach(5, _pastController.text);
                     saveEach(6, _indoorController.text);
+                    saveEach(7, _gdController.text);
                   },
-                  textColor: Colors.white54,
-                  color: Colors.teal,
+                  style: ElevatedButton.styleFrom(onPrimary: Colors.white54, primary: Colors.teal,),
                   icon: Icon(Icons.save),
                   label: Text('Save'),
                 )

@@ -26,7 +26,7 @@ class _IndoorState extends State<Indoor> {
       Provider.of<SensorsProvider>(context, listen: false).fetchFRTemp(
         baseName,
         portName,
-        'frtemp',// setter[5].setting,
+        setter[5].setting,
       );
     });
   }
