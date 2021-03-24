@@ -31,9 +31,6 @@ class WidgetConfig {
         bordRadRB == 0.0) {
       borderEqual = true;
     }
-
-    // print('borderEqual: $borderEqual');
-
     return Container(
       width: width,
       height: height,
@@ -55,13 +52,11 @@ class WidgetConfig {
             colors: [
               Color(int.parse(colorOne)),
               Color(int.parse(colorTwo)),
-              // Color.fromRGBO(64, 66, 65, 1),
-              // Color.fromRGBO(35, 38, 37, 1),
             ]),
         boxShadow: [
           BoxShadow(
             color: Colors.black,
-            offset: Offset(offX, offY), //(x,y)
+            offset: Offset(offX, offY), 
             blurRadius: blurRad,
           ),
         ],
@@ -97,9 +92,6 @@ class WidgetConfig {
         bordRadRB == 0.0) {
       borderEqual = true;
     }
-
-    // print('borderEqual: $borderEqual');
-
     return Container(
       width: width,
       height: height,
@@ -152,9 +144,6 @@ class WidgetConfig {
         bordRadRB == 0.0) {
       borderEqual = true;
     }
-
-    // print('borderEqual: $borderEqual');
-
     return Container(
       width: width,
       height: height,

@@ -28,10 +28,6 @@ class WeatherProvider extends ChangeNotifier {
     return [..._day];
   }
 
-  // List<IndoorModel> get indoor {
-  //   return [..._indoor];
-  // }
-
   Future<void> fetchCurrent(
     String baseName,
     String portName,
