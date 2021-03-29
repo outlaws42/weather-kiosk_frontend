@@ -77,7 +77,7 @@ class SensorsProvider extends ChangeNotifier {
           loadSensor.add(
             SensorModel(
               sensor: sensor,
-              sensorVal: 25,
+              sensorVal: 0,
               date: value['dt'],
             ),
           );
