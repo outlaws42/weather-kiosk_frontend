@@ -117,11 +117,12 @@ class _DTState extends State<DT> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                         alignment: Alignment.center,
                         child: Text(
-                          payload.gdBasement[0].sensorVal == 0
+                          payload.gdBasement[0].sensorVal == 1
                               ? 'Closed'
-                              : 'Open',
-                          style:
-                              Theme.of(context).textTheme.headline5,
+                              : payload.gdBasement[0].sensorVal == 2
+                                  ? 'Open'
+                                  : 'ERROR',
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                       ),
                     ],
