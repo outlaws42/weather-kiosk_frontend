@@ -21,13 +21,13 @@ class IconText {
         currentTime >= sunrise &&
         currentTime < sunset) {
       return 'partly-cloudy-day.png';
-    } else if (code >= 801 && code <= 802 && currentTime >= sunset ||
+    } else if (code >= 801 && code <= 803 && currentTime >= sunset ||
         code >= 801 &&
-            code <= 802 &&
+            code <= 803 &&
             currentTime >= 0 &&
             currentTime < sunrise) {
       return 'partly-cloudy-night.png';
-    } else if (code >= 803 && code <= 804) {
+    } else if (code == 804) {
       return 'cloudy.png';
     } else if (code > 700 && code < 800) {
       return 'fog.png';
@@ -77,7 +77,7 @@ class IconText {
     } else if (code > 700 && code < 800) {
       return 'foggy$season.jpg';
     } else if (code >= 600 && code < 650) {
-      return 'snow.jpg';
+      return 'snow$season.jpg';
     } else if (code >= 300 && code < 550) {
       return 'rain$season.jpg';
     } else if (code >= 200 && code < 250) {

@@ -31,6 +31,7 @@
 .pub/
 /build/
 linux/flutter/*
+assets/images/background/.comments/*
 
 pubspec.lock
 *.lock
