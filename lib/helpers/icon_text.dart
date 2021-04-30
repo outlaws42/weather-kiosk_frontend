@@ -17,7 +17,7 @@ class IconText {
         code == 800 && currentTime >= 0 && currentTime < sunrise) {
       return 'clear-night.png';
     } else if (code >= 801 &&
-        code <= 802 &&
+        code <= 803 &&
         currentTime >= sunrise &&
         currentTime < sunset) {
       return 'partly-cloudy-day.png';
