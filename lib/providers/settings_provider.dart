@@ -11,7 +11,7 @@ class SettingProvider extends ChangeNotifier {
   }
 
   String get version {
-    String _version = 'V1.1.2';
+    String _version = 'V1.1.3';
     return _version;
   }
 
